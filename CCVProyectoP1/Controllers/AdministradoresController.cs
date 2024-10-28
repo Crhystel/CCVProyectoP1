@@ -17,6 +17,7 @@ namespace CCVProyectoP1.Controllers
         public AdministradoresController(CCVProyectoP1Context context)
         {
             _context = context;
+            
         }
 
         // GET: Administradores
@@ -44,26 +45,27 @@ namespace CCVProyectoP1.Controllers
         }
 
         // GET: Administradores/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: Administradores/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Usuario,Contrasenia")] Administrador administrador)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(administrador);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(administrador);
-        }
+        //public async Task<IActionResult> Create([Bind("Id,Usuario,Contrasenia")] Administrador administrador)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+               
+        //        _context.Add(administrador);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(administrador);
+        //}
 
         // GET: Administradores/Edit/5
         public async Task<IActionResult> Edit(int? id)
