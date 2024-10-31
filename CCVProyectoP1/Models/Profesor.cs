@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CCVProyectoP1.Models
 {
-    public class Profesor
+    public class Profesor: Usuario
     {
-        public Usuario? Usuario { get; set; }
-        public int IdUsuario { get; set; }
         public string Materia {  get; set; }    
     }
 }
