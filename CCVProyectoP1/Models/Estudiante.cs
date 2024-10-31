@@ -1,14 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace CCVProyectoP1.Models
+﻿namespace CCVProyecto1._1.Models
 {
-    public class Estudiante
+    public class Estudiante : Usuario
     {
-        public Usuario? Usuario { get; set; }
-        [ForeignKey(nameof(Usuario))]
-        [Key]
-        public int IdUsuario { get; set; }
         public string Grado { get; set; }
     }
 }
