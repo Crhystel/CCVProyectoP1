@@ -1,17 +1,26 @@
-﻿
+﻿@model CCVProyecto1._1.Models.Usuario
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4">
-            <form>
+            <form asp-controller="Login" asp-action="Index" method="post">
                 <legend class="text-center">Inicio de Sesión</legend>
                 <div class="mb-3">
                     <label class="form-label mt-4">Nombre de Usuario</label>
-                    <input type="email" class="form-control">
+                    <input class="form-control" asp-for="NombreUsuario">
                 </div>
                 <div class="mb-3">
                     <label class="form-label mt-4">Contraseña</label>
-                    <input type="password" class="form-control">
+                    <input type="password" class="form-control" asp-for="Contrasenia">
                 </div>
+                <button type="submit" class="btn btn-info">Ingresar</button>
+
             </form>
         </div>
     </div>

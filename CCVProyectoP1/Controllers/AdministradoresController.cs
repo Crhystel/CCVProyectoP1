@@ -2,7 +2,7 @@
 
 namespace CCVProyectoP1.Controllers
 {
-    public class AdministradorController : Controller
+    public class AdministradoresController : Controller
     {
         public IActionResult Index()
         {
