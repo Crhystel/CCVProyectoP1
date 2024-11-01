@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Rol" class="control-label"></label>
-                <select asp-for="Rol" class="form-control" asp-items="ViewBag.Rol">
+                <select asp-for="Rol" class="form-control" asp-items="@(new SelectList(ViewBag.Rol))">
                     <option value=""></option>
                 </select>
                 <span asp-validation-for="Rol" class="text-danger"></span>

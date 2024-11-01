@@ -26,6 +26,8 @@ namespace CCVProyectoP1.Controllers
             return View(await _context.Profesor.ToListAsync());
         }
 
+
+
         // GET: Profesores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -47,7 +49,11 @@ namespace CCVProyectoP1.Controllers
         // GET: Profesores/Create
         public IActionResult Create()
         {
-            ViewBag.Rol = new SelectList(Enum.GetValues(typeof(RolEnum)));
+            var rol = Enum.GetValues(typeof(RolEnum))
+               .Cast<RolEnum>()
+               .Where(r => r == RolEnum.Profesor || r == RolEnum.Administrador)
+               .ToList();
+            ViewBag.Rol = rol;
             return View();
         }
 
