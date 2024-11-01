@@ -15,7 +15,7 @@ namespace CCVProyectoP1.Data
         }
 
         //public DbSet<CCVProyectoP1.Models.Administrador> Administrador { get; set; } = default!;
-        //public DbSet<CCVProyectoP1.Models.Estudiante> Estudiante { get; set; } = default!;
+        public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } = default!;
         //public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } = default!;
         //public DbSet<CCVProyectoP1.Models.Usuario> Usuarios { get; set; } = default!;
     }
