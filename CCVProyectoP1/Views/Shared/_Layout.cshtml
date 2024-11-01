@@ -32,6 +32,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="Privacy">Privacy</a>
+                        </li>
                       
                         @if (ViewData["MostrarSalir"] !=null && (bool)ViewData["MostrarSalir"])
                         {
@@ -40,8 +43,6 @@
                                     <a class="nav-link text-dark" asp-controller="Administrador" asp-action="Salir">Salir</a>
                                 </li>
                             </ul>
-                            
-                            
                         }
 
                     </ul>
