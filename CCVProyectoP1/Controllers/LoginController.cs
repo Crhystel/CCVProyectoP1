@@ -34,11 +34,6 @@ namespace CCVProyectoP1.Controllers
                     //new Claim("Usuario", usuario.Usuario)
                 };
              
-               
-                //foreach(string rol in usuario.Rol)
-                //{
-                //    //claims.Add(new Claim(ClaimTypes.Role, _usuario.Rol.ToString()));
-                //}
                 var claimsIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
@@ -51,6 +46,24 @@ namespace CCVProyectoP1.Controllers
                 return View();
             }
             
+            var usuario1= await _logica.GetProfesorAsync(_usuario.NombreUsuario, _usuario.Contrasenia);
+            if (usuario != null)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, usuario.NombreUsuario),
+                    new Claim("Contrasenia", usuario.Contrasenia),
+                    new Claim(ClaimTypes.Role, usuario.Rol.ToString())
+                };
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                return RedirectToAction("Index", "ProfesorContent");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "El nombre de usuario o la contraseña son incorrectos.";
+                return View();
+            }
         }
 
     }
