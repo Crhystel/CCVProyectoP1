@@ -2,10 +2,8 @@
 
 namespace CCVProyecto1._1.Models
 {
-    public class Administrador
+    public class Administrador: Usuario
     {
-        [Key]
-        public string Usuario { get; set; }
-        public string Contrasenia { get; set; }
+        
     }
 }

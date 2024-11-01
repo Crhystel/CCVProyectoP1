@@ -23,21 +23,43 @@ namespace CCVProyectoP1.Migrations
 
             modelBuilder.Entity("CCVProyecto1._1.Models.Administrador", b =>
                 {
-                    b.Property<string>("Usuario")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<long>("Cedula")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Cedula"));
 
                     b.Property<string>("Contrasenia")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("Usuario");
+                    b.Property<int>("Edad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("NombreUsuario")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("Rol")
+                        .HasColumnType("int");
+
+                    b.HasKey("Cedula");
 
                     b.ToTable("Administrador");
 
                     b.HasData(
                         new
                         {
-                            Usuario = "admin",
-                            Contrasenia = "admin"
+                            Cedula = 1234567890L,
+                            Contrasenia = "admin",
+                            Edad = 30,
+                            Nombre = "Roberto",
+                            NombreUsuario = "admin",
+                            Rol = 0
                         });
                 });
 
@@ -67,9 +89,8 @@ namespace CCVProyectoP1.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("Rol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Rol")
+                        .HasColumnType("int");
 
                     b.HasKey("Cedula");
 

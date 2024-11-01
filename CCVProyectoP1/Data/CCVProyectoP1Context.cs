@@ -20,8 +20,12 @@ namespace CCVProyectoP1.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Administrador>().HasData(new Administrador
             {
-                Usuario = "admin",
-                Contrasenia = "admin"
+                Cedula=1234567890,
+                Nombre="Roberto",
+                NombreUsuario = "admin",
+                Contrasenia = "admin",
+                Edad=30,
+                Rol= RolEnum.Administrador,
             });
         }
         

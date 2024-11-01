@@ -13,7 +13,7 @@ namespace CCVProyectoP1.Data
         public async Task<Administrador?> GetAdministradorsAsync(string nombreUsuario, string contrasenia)
         {
             return await _context.Administrador
-                .FirstOrDefaultAsync(a => a.Usuario == nombreUsuario && a.Contrasenia == contrasenia);
+                .FirstOrDefaultAsync(a => a.NombreUsuario == nombreUsuario && a.Contrasenia == contrasenia);
         }
 
     }

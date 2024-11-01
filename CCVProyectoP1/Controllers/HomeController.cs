@@ -2,6 +2,7 @@ using CCVProyectoP1.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
+
 namespace CCVProyectoP1.Controllers
 {
     public class HomeController : Controller

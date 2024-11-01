@@ -35,9 +35,12 @@
                       
                         @if (ViewData["MostrarSalir"] !=null && (bool)ViewData["MostrarSalir"])
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Administrador" asp-action="Salir">Salir</a>
-                            </li>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Administrador" asp-action="Salir">Salir</a>
+                                </li>
+                            </ul>
+                            
                             
                         }
 

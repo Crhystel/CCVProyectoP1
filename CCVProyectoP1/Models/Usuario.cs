@@ -2,6 +2,12 @@
 
 namespace CCVProyecto1._1.Models
 {
+    public enum RolEnum
+    {
+        Administrador,
+        Estudiante,
+        Profesor
+    }
     public class Usuario
     {
         [Key]
@@ -18,6 +24,6 @@ namespace CCVProyecto1._1.Models
         [Range(0, 100)]
         public int Edad { get; set; }
         [Required]
-        public string[] Rol {  get; set; }
+        public RolEnum Rol {  get; set; }
     }
 }
