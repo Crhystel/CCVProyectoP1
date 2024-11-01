@@ -51,7 +51,7 @@ namespace CCVProyectoP1.Controllers
         {
             var rol = Enum.GetValues(typeof(RolEnum))
                .Cast<RolEnum>()
-               .Where(r => r == RolEnum.Profesor || r == RolEnum.Administrador)
+               .Where(r => r == RolEnum.Profesor )
                .ToList();
             ViewBag.Rol = rol;
             return View();
