@@ -10,9 +10,9 @@ namespace CCVProyectoP1.Data
         {
             _context = context;
         }
-        public  async Task<List<Profesor>> GetProfesorsAsync() 
+        public async Task<List<Administrador>> GetAdministradorsAsync()
         {
-            return await _context.Profesor.ToListAsync();
+            return await _context.Administrador.ToListAsync();
         }
     }
 }

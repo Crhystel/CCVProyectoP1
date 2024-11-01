@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CCVProyectoP1.Models;
+
 using CCVProyectoP1.Data;
 using CCVProyecto1._1.Models;
 
@@ -19,10 +19,10 @@ namespace CCVProyectoP1.Controllers
         [HttpPost]
         public async Task<IActionResult> Index( Usuario _usuario)
         {
-            var usuario= await _logica.GetProfesorsAsync();
+            var usuario = await _logica.GetAdministradorsAsync();
             if(usuario != null)
             {
-                return RedirectToAction("Index", "Administradores");
+                return RedirectToAction("Index", "Administrador");
             }
             else
             {
