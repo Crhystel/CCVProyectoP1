@@ -20,6 +20,11 @@ namespace CCVProyectoP1.Data
             return await _context.Profesor
                 .FirstOrDefaultAsync(a => a.NombreUsuario == nombreUsuario && a.Contrasenia == contrasenia);
         }
+        public async Task<Estudiante> GetEstudianteAsync(string nombreUsuario, string contrasenia)
+        {
+            return await _context.Estudiante
+                .FirstOrDefaultAsync(a => a.NombreUsuario == nombreUsuario && a.Contrasenia == contrasenia);
+        }
 
     }
 }
