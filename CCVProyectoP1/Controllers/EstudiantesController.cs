@@ -46,8 +46,15 @@ namespace CCVProyectoP1.Controllers
         // GET: Estudiantes/Create
         public IActionResult Create()
         {
+            var rol = Enum.GetValues(typeof(RolEnum))
+               .Cast<RolEnum>()
+               .Where(r => r == RolEnum.Estudiante)
+               .ToList();
+            ViewBag.Rol = rol;
             return View();
         }
+            
+        
 
         // POST: Estudiantes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
