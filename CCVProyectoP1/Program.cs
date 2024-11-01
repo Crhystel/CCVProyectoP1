@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using CCVProyectoP1.Data;
 using CCVProyectoP1.Models;
+using CCVProyecto1._1.Models;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<CCVProyectoP1Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CCVProyectoP1Context") ?? throw new InvalidOperationException("Connection string 'CCVProyectoP1Context' not found.")));

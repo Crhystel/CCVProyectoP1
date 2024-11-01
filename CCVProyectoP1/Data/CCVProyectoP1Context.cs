@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CCVProyectoP1.Models;
+using CCVProyecto1._1.Models;
 
 namespace CCVProyectoP1.Data
 {
@@ -13,8 +14,20 @@ namespace CCVProyectoP1.Data
             : base(options)
         {
         }
-
         public DbSet<CCVProyecto1._1.Models.Administrador> Administrador { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Administrador>().HasData(new Administrador
+            {
+                Usuario = "admin",
+                Contrasenia = "admin"
+            });
+        }
+        
+            
+
+        
         public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } = default!;
         //public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } = default!;
         //public DbSet<CCVProyectoP1.Models.Usuario> Usuarios { get; set; } = default!;

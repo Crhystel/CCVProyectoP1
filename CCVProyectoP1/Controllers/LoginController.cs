@@ -19,7 +19,7 @@ namespace CCVProyectoP1.Controllers
         [HttpPost]
         public async Task<IActionResult> Index( Usuario _usuario)
         {
-            var usuario = await _logica.GetAdministradorsAsync();
+            var usuario = await _logica.GetAdministradorsAsync(_usuario.NombreUsuario, _usuario.Contrasenia);
             if(usuario != null)
             {
                 return RedirectToAction("Index", "Administrador");
