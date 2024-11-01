@@ -14,8 +14,9 @@ namespace CCVProyectoP1.Migrations
                 name: "Administrador",
                 columns: table => new
                 {
-                    Cedula = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Cedula = table.Column<long>(type: "bigint", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     NombreUsuario = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Contrasenia = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
@@ -24,16 +25,17 @@ namespace CCVProyectoP1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Administrador", x => x.Cedula);
+                    table.PrimaryKey("PK_Administrador", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Profesor",
                 columns: table => new
                 {
-                    Cedula = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Materia = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cedula = table.Column<long>(type: "bigint", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     NombreUsuario = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Contrasenia = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
@@ -42,13 +44,13 @@ namespace CCVProyectoP1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Profesor", x => x.Cedula);
+                    table.PrimaryKey("PK_Profesor", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
                 table: "Administrador",
-                columns: new[] { "Cedula", "Contrasenia", "Edad", "Nombre", "NombreUsuario", "Rol" },
-                values: new object[] { 1234567890L, "admin", 30, "Roberto", "admin", 0 });
+                columns: new[] { "Id", "Cedula", "Contrasenia", "Edad", "Nombre", "NombreUsuario", "Rol" },
+                values: new object[] { 1, 1234567890L, "admin", 30, "Roberto", "admin", 0 });
         }
 
         /// <inheritdoc />

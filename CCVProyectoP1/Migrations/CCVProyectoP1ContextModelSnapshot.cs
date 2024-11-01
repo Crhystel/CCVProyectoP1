@@ -23,11 +23,14 @@ namespace CCVProyectoP1.Migrations
 
             modelBuilder.Entity("CCVProyecto1._1.Models.Administrador", b =>
                 {
-                    b.Property<long>("Cedula")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Cedula"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<long>("Cedula")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Contrasenia")
                         .HasMaxLength(10)
@@ -47,13 +50,14 @@ namespace CCVProyectoP1.Migrations
                     b.Property<int>("Rol")
                         .HasColumnType("int");
 
-                    b.HasKey("Cedula");
+                    b.HasKey("Id");
 
                     b.ToTable("Administrador");
 
                     b.HasData(
                         new
                         {
+                            Id = 1,
                             Cedula = 1234567890L,
                             Contrasenia = "admin",
                             Edad = 30,
@@ -65,11 +69,14 @@ namespace CCVProyectoP1.Migrations
 
             modelBuilder.Entity("CCVProyectoP1.Models.Profesor", b =>
                 {
-                    b.Property<long>("Cedula")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Cedula"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<long>("Cedula")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Contrasenia")
                         .HasMaxLength(10)
@@ -92,7 +99,7 @@ namespace CCVProyectoP1.Migrations
                     b.Property<int>("Rol")
                         .HasColumnType("int");
 
-                    b.HasKey("Cedula");
+                    b.HasKey("Id");
 
                     b.ToTable("Profesor");
                 });
