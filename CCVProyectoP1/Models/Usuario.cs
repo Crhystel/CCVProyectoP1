@@ -14,8 +14,9 @@ namespace CCVProyecto1._1.Models
         public string NombreUsuario { get; set; }
         [Display(Name = "Contraseña")]
         [StringLength(10, ErrorMessage = "Formato de contraseña erronea")]
-        public string Contrasenia { get; set; }
+        public string? Contrasenia { get; set; }
         [Range(0, 100)]
         public int Edad { get; set; }
+        public string[] Rol {  get; set; }
     }
 }
