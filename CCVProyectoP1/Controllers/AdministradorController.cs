@@ -6,7 +6,13 @@ namespace CCVProyectoP1.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["MostrarSalir"] = true; 
             return View();
         }
+        public IActionResult Salir()
+        {
+            return RedirectToAction("Index", "Home"); 
+        }
+
     }
 }
