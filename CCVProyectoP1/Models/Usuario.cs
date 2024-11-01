@@ -17,6 +17,7 @@ namespace CCVProyecto1._1.Models
         public string? Contrasenia { get; set; }
         [Range(0, 100)]
         public int Edad { get; set; }
+        [Required]
         public string[] Rol {  get; set; }
     }
 }
