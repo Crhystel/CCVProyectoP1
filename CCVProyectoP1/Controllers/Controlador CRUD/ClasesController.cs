@@ -122,6 +122,39 @@ namespace CCVProyectoP1.Controllers
             return View(clase);
         }
 
+        // GET: Clases/UnirAlumnosAClases
+        public IActionResult UnirAlumnosAClases()
+        {
+            // Cargar listas de clases y estudiantes para el formulario
+            var clases = _context.Clase.ToList();
+            var estudiantes = _context.Estudiante.ToList();
+
+            // Pasar las listas a la vista mediante ViewBag
+            ViewBag.Clases = new SelectList(clases, "Id", "Nombre");
+            ViewBag.Estudiantes = new SelectList(estudiantes, "Id", "Nombre");
+
+            return View();
+        }
+
+        // POST: Clases/UnirAlumnosAClases
+        [HttpPost]
+        public IActionResult UnirAlumnosAClases(int claseId, int estudianteId)
+        {
+            // Buscar la clase y el estudiante seleccionados
+            var clase = _context.Clase.Include(c => c.Estudiante).FirstOrDefault(c => c.Id == claseId);
+            var estudiante = _context.Estudiante.Find(estudianteId);
+
+            // Agregar el estudiante a la clase y guardar los cambios
+            if (clase != null && estudiante != null && !clase.Estudiante.Contains(estudiante))
+            {
+                clase.Estudiante.Add(estudiante);
+                _context.SaveChanges();
+            }
+
+            // Redirigir de vuelta al índice de Clases
+            return RedirectToAction("Index");
+        }
+
         // GET: Clases/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -160,5 +193,7 @@ namespace CCVProyectoP1.Controllers
         {
             return _context.Clase.Any(e => e.Id == id);
         }
+
+
     }
 }
