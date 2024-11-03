@@ -32,15 +32,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="Privacy">Privacy</a>
-                        </li>
                       
                         @if (ViewData["MostrarSalir"] !=null && (bool)ViewData["MostrarSalir"])
                         {
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Administrador" asp-action="Salir">Salir</a>
+                                    <a class="nav-link text-dark" asp-controller="Administrador" asp-action="Salir">Cerrar Sesión</a>
                                 </li>
                             </ul>
                         }

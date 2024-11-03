@@ -12,6 +12,7 @@
 <body>
 
 <h4>Profesor</h4>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -64,6 +65,11 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+    @section Scripts {
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }
+
 
 </body>
 </html>
