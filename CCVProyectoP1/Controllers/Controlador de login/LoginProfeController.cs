@@ -28,6 +28,7 @@ namespace CCVProyectoP1.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, usuario.NombreUsuario),
+                    new Claim("UserId", usuario.Id.ToString()),
                     new Claim("Contrasenia", usuario.Contrasenia),
                     new Claim(ClaimTypes.Role, usuario.Rol.ToString())
                 };

@@ -2,16 +2,25 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using CCVProyectoP1.Data;
 
 namespace CCVProyectoP1.Controllers
 {
     [Authorize]
     public class ProfesorContentController : Controller
     {
+        private readonly CCVProyectoP1Context _context;
+        public ProfesorContent(CCVProyectoP1Context context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
+            var profesorId = int.Parse(User.FindFirst("UserId")?.Value ?? "0");
+            var clases = _context.Clase.Where(c => c.IdProfesor == profesorId).ToList();
+
             ViewData["MostrarSalir"] = true;
-            return View();
+            return View(clases);
         }
         public async Task<IActionResult> Salir()
         {
