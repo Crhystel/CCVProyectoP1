@@ -8,6 +8,7 @@ namespace CCVProyecto1._1.Models
     {
         [Key]
         public int Id { get; set; }
+        public string Nombre { get; set; }
         public Profesor? Profesor { get; set; }
         [ForeignKey(nameof(Profesor))]
         public int IdProfesor { get; set; }
