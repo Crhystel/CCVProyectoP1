@@ -48,7 +48,7 @@ namespace CCVProyectoP1.Controllers
         // GET: Clases/Create
         public IActionResult Create()
         {
-            ViewData["IdProfesor"] = new SelectList(_context.Profesor, "Id", "Contrasenia");
+            ViewData["IdProfesor"] = new SelectList(_context.Profesor, "Id", "Nombre");
             return View();
         }
 
