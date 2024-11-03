@@ -52,7 +52,7 @@ namespace CCVProyectoP1.Controllers
             {
                 _context.Clase.Add(clase);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("ListaClases");
             }
             return View(clase);
         }

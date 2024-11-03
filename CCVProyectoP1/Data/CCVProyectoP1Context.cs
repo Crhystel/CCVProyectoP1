@@ -16,10 +16,10 @@ namespace CCVProyectoP1.Data
         }
         public DbSet<CCVProyecto1._1.Models.Administrador> Administrador { get; set; } = default!;
 
-        public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } = default!;
-        public DbSet<CCVProyecto1._1.Models.Estudiante> Estudiante { get; set; } = default!;
+        public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } 
+        public DbSet<CCVProyecto1._1.Models.Estudiante> Estudiante { get; set; }
 
-        public DbSet<CCVProyecto1._1.Models.Clase> Clase { get; set; } = default!;
+        public DbSet<CCVProyecto1._1.Models.Clase> Clase { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -34,16 +34,18 @@ namespace CCVProyectoP1.Data
                 Rol = RolEnum.Administrador,
             });
 
+            modelBuilder.Entity<Clase>()
+               .HasOne(c => c.Profesor)
+               .WithMany()
+               .HasForeignKey(c => c.IdProfesor)
+               .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<Estudiante>()
                 .HasMany(e => e.Clase)
                 .WithMany(c => c.Estudiante)
                 .UsingEntity(j => j.ToTable("EstudianteClases"));
 
-            modelBuilder.Entity<Clase>()
-                .HasOne(c => c.Profesor)
-                .WithMany()
-                .HasForeignKey(c => c.IdProfesor)
-                .OnDelete(DeleteBehavior.Restrict);
+           
         }
         
         //public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } = default!;

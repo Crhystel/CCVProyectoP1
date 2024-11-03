@@ -7,7 +7,7 @@ namespace CCVProyecto1._1.Models
     {
         [Required(ErrorMessage = "Este campo es obligatorio.")]
         public string Grado { get; set; }
-        public List<Clase>? Clase { get; set; }
+        public List<Clase> Clase { get; set; } = new List<Clase>();
 
     }
 
