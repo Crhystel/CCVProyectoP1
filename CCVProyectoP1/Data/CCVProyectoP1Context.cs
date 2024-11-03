@@ -22,7 +22,13 @@ namespace CCVProyectoP1.Data
         public DbSet<CCVProyecto1._1.Models.Clase> Clase { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Clase>()
+            .HasMany(c => c.Estudiante)
+            .WithMany(e => e.Clase);
+
             modelBuilder.Entity<Administrador>().HasData(new Administrador
             {
                 Id = 1,
