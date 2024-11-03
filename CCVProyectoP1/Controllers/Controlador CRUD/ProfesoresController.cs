@@ -92,7 +92,12 @@ namespace CCVProyectoP1.Controllers
             {
                 return NotFound();
             }
-            ViewBag.Rol = new SelectList(Enum.GetValues(typeof(RolEnum)), profesor.Rol);
+            var rol = new List<SelectListItem>
+            {
+                new SelectListItem{Value=RolEnum.Profesor.ToString(),Text="Profesor", Selected=true}
+            };
+            ViewBag.Rol = rol;
+            //ViewBag.Rol = new SelectList(Enum.GetValues(typeof(RolEnum)), profesor.Rol);
             return View(profesor);
         }
 
