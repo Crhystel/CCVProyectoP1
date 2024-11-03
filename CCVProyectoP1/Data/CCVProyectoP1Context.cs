@@ -38,10 +38,13 @@ namespace CCVProyectoP1.Data
                 .HasMany(e => e.Clase)
                 .WithMany(c => c.Estudiante)
                 .UsingEntity(j => j.ToTable("EstudianteClases"));
-        }
-        
-            
 
+            modelBuilder.Entity<Clase>()
+                .HasOne(c => c.Profesor)
+                .WithMany()
+                .HasForeignKey(c => c.IdProfesor)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
         
         //public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } = default!;
         //public DbSet<CCVProyectoP1.Models.Usuario> Usuarios { get; set; } = default!;
