@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace CCVProyectoP1.Controllers
 {
     [Authorize]
-    public class ProfesorContent : Controller
+    public class ProfesorContentController : Controller
     {
         public IActionResult Index()
         {
