@@ -29,4 +29,57 @@
             </div>
         </div>
     </div>
+    <div class="row mt-4">
+        <!-- Formulario para Asignar Profesor a una Clase -->
+        <div class="col-md-12 mb-4">
+            <h2>Asignar Profesor a Clase</h2>
+            <form asp-action="AsignarProfesorAClase" method="post">
+                <div class="form-group">
+                    <label for="ClaseId">Clase</label>
+                    <select id="ClaseId" name="ClaseId" class="form-control">
+                        @foreach (var clase in ViewBag.Clases)
+                        {
+                            <option value="@clase.Id">@clase.NombreClase</option> <!-- Asegúrate de tener un campo NombreClase en el modelo Clase -->
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ProfesorId">Profesor</label>
+                    <select id="ProfesorId" name="ProfesorId" class="form-control">
+                        @foreach (var profesor in ViewBag.Profesores)
+                        {
+                            <option value="@profesor.Id">@profesor.Nombre</option> <!-- Asegúrate de tener un campo Nombre en el modelo Profesor -->
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Asignar Profesor</button>
+            </form>
+        </div>
+
+        <!-- Formulario para Asignar Estudiantes a una Clase -->
+        <div class="col-md-12 mb-4">
+            <h2>Asignar Estudiantes a Clase</h2>
+            <form asp-action="AsignarEstudiantesAClase" method="post">
+                <div class="form-group">
+                    <label for="ClaseId">Clase</label>
+                    <select id="ClaseId" name="ClaseId" class="form-control">
+                        @foreach (var clase in ViewBag.Clases)
+                        {
+                            <option value="@clase.Id">@clase.NombreClase</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="EstudiantesIds">Estudiantes</label>
+                    <select id="EstudiantesIds" name="EstudiantesIds" multiple class="form-control">
+                        @foreach (var estudiante in ViewBag.Estudiantes)
+                        {
+                            <option value="@estudiante.Id">@estudiante.Nombre</option> <!-- Asegúrate de tener un campo Nombre en el modelo Estudiante -->
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Asignar Estudiantes</button>
+            </form>
+        </div>
+    </div>
 </div>
