@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using CCVProyectoP1.Data;
+using CCVProyecto1._1.Models;
 
 namespace CCVProyectoP1.Controllers
 {
@@ -18,7 +19,7 @@ namespace CCVProyectoP1.Controllers
         {
             var profesorId = int.Parse(User.FindFirst("UserId")?.Value ?? "0");
             var clases = _context.Clase.Where(c => c.IdProfesor == profesorId).ToList();
-
+            
             ViewData["MostrarSalir"] = true;
             return View(clases);
         }
