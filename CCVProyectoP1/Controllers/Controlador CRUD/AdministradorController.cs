@@ -40,66 +40,12 @@ namespace CCVProyectoP1.Controllers
             var clases = _context.Clase.ToList();
             return View(clases);
         }
-        public IActionResult CrearClase()
+        public IActionResult Crete()
         {
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CrearClase(Clase clase)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Clase.Add(clase);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("ListaClases");
-            }
-            return View(clase);
-        }
-
-        public IActionResult EditarClase(int id)
-        {
-            var clase = _context.Clase.Find(id);
-            if (clase == null)
-            {
-                return NotFound();
-            }
-            return View(clase);
-        }
-
-        [HttpPost]
-        public IActionResult EditarClase(Clase clase)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Clase.Update(clase);
-                _context.SaveChanges();
-                return RedirectToAction("ListaClases");
-            }
-            return View(clase);
-        }
-
-        public IActionResult EliminarClase(int id)
-        {
-            var clase = _context.Clase.Find(id);
-            if (clase == null)
-            {
-                return NotFound();
-            }
-            return View(clase);
-        }
-
-        [HttpPost, ActionName("EliminarClase")]
-        public IActionResult ConfirmarEliminarClase(int id)
-        {
-            var clase = _context.Clase.Find(id);
-            if (clase != null)
-            {
-                _context.Clase.Remove(clase);
-                _context.SaveChanges();
-            }
-            return RedirectToAction("ListaClases");
-        }
+       
 
         public IActionResult AsignarProfesorAClase(int claseId, int profesorId)
         {

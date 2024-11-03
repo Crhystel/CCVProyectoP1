@@ -14,7 +14,7 @@ namespace CCVProyecto1._1.Models
         public Profesor? Profesor { get; set; }
         [ForeignKey(nameof(Profesor))]
         public int? IdProfesor { get; set; }
-        public List<Estudiante> Estudiante { get; set; } = new List<Estudiante>();
+        public ICollection<Estudiante> Estudiante { get; set; } = new List<Estudiante>();
 
     }
 }
