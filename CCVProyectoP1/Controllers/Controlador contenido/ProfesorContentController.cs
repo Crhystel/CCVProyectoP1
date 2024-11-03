@@ -10,7 +10,7 @@ namespace CCVProyectoP1.Controllers
     public class ProfesorContentController : Controller
     {
         private readonly CCVProyectoP1Context _context;
-        public ProfesorContent(CCVProyectoP1Context context)
+        public ProfesorContentController(CCVProyectoP1Context context)
         {
             _context = context;
         }
