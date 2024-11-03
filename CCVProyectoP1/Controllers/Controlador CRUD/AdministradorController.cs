@@ -46,13 +46,13 @@ namespace CCVProyectoP1.Controllers
         }
 
         [HttpPost]
-        public IActionResult CrearClase(Clase clase)
+        public async Task<IActionResult> CrearClase(Clase clase)
         {
             if (ModelState.IsValid)
             {
                 _context.Clase.Add(clase);
-                _context.SaveChanges();
-                return RedirectToAction("ListaClases");
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
             return View(clase);
         }

@@ -4,6 +4,7 @@ using CCVProyectoP1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCVProyectoP1.Migrations
 {
     [DbContext(typeof(CCVProyectoP1Context))]
-    partial class CCVProyectoP1ContextModelSnapshot : ModelSnapshot
+    [Migration("20241103184749_MP1")]
+    partial class MP1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,7 +191,7 @@ namespace CCVProyectoP1.Migrations
 
                     b.HasIndex("EstudianteId");
 
-                    b.ToTable("EstudianteClases", (string)null);
+                    b.ToTable("ClaseEstudiante");
                 });
 
             modelBuilder.Entity("CCVProyecto1._1.Models.Clase", b =>

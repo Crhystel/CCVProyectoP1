@@ -15,6 +15,11 @@ namespace CCVProyectoP1.Data
         {
         }
         public DbSet<CCVProyecto1._1.Models.Administrador> Administrador { get; set; } = default!;
+
+        public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } = default!;
+        public DbSet<CCVProyecto1._1.Models.Estudiante> Estudiante { get; set; } = default!;
+
+        public DbSet<CCVProyecto1._1.Models.Clase> Clase { get; set; } = default!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -28,15 +33,16 @@ namespace CCVProyectoP1.Data
                 Edad = 30,
                 Rol = RolEnum.Administrador,
             });
+
+            modelBuilder.Entity<Estudiante>()
+                .HasMany(e => e.Clase)
+                .WithMany(c => c.Estudiante)
+                .UsingEntity(j => j.ToTable("EstudianteClases"));
         }
         
             
 
         
-        public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } = default!;
-        public DbSet<CCVProyecto1._1.Models.Estudiante> Estudiante { get; set; } = default!;
-
-        public DbSet<CCVProyecto1._1.Models.Clase> Clase { get; set; } = default!;
         //public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } = default!;
         //public DbSet<CCVProyectoP1.Models.Usuario> Usuarios { get; set; } = default!;
     }
