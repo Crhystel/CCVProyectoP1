@@ -29,8 +29,11 @@
             </div>
         </div>
     </div>
+    <div class="mt-4">
+        <a asp-action="ListaClases" class="btn btn-primary">Gestionar Clases</a>
+    </div>
     <div class="row mt-4">
-        <!-- Formulario para Asignar Profesor a una Clase -->
+        
         <div class="col-md-12 mb-4">
             <h2>Asignar Profesor a Clase</h2>
             <form asp-action="AsignarProfesorAClase" method="post">
@@ -39,7 +42,7 @@
                     <select id="ClaseId" name="ClaseId" class="form-control">
                         @foreach (var clase in ViewBag.Clases)
                         {
-                            <option value="@clase.Id">@clase.NombreClase</option> <!-- Asegúrate de tener un campo NombreClase en el modelo Clase -->
+                            <option value="@clase.Id">@clase.Nombre</option> 
                         }
                     </select>
                 </div>
@@ -48,7 +51,7 @@
                     <select id="ProfesorId" name="ProfesorId" class="form-control">
                         @foreach (var profesor in ViewBag.Profesores)
                         {
-                            <option value="@profesor.Id">@profesor.Nombre</option> <!-- Asegúrate de tener un campo Nombre en el modelo Profesor -->
+                            <option value="@profesor.Id">@profesor.Nombre</option> 
                         }
                     </select>
                 </div>
@@ -56,7 +59,7 @@
             </form>
         </div>
 
-        <!-- Formulario para Asignar Estudiantes a una Clase -->
+        
         <div class="col-md-12 mb-4">
             <h2>Asignar Estudiantes a Clase</h2>
             <form asp-action="AsignarEstudiantesAClase" method="post">
@@ -65,7 +68,7 @@
                     <select id="ClaseId" name="ClaseId" class="form-control">
                         @foreach (var clase in ViewBag.Clases)
                         {
-                            <option value="@clase.Id">@clase.NombreClase</option>
+                            <option value="@clase.Id">@clase.Nombre</option>
                         }
                     </select>
                 </div>
@@ -74,7 +77,7 @@
                     <select id="EstudiantesIds" name="EstudiantesIds" multiple class="form-control">
                         @foreach (var estudiante in ViewBag.Estudiantes)
                         {
-                            <option value="@estudiante.Id">@estudiante.Nombre</option> <!-- Asegúrate de tener un campo Nombre en el modelo Estudiante -->
+                            <option value="@estudiante.Id">@estudiante.Nombre</option> 
                         }
                     </select>
                 </div>
