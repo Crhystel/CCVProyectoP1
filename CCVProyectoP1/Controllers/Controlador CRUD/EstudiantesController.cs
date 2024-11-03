@@ -24,6 +24,11 @@ namespace CCVProyectoP1.Controllers
         {
             return View(await _context.Estudiante.ToListAsync());
         }
+        public IActionResult Regresar()
+        {
+            //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Administrador");
+        }
 
         // GET: Estudiantes/Details/5
         public async Task<IActionResult> Details(int? id)

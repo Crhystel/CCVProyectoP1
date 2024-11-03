@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using CCVProyectoP1.Data;
 using CCVProyectoP1.Models;
 using CCVProyecto1._1.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace CCVProyectoP1.Controllers
 {
@@ -26,7 +28,11 @@ namespace CCVProyectoP1.Controllers
             return View(await _context.Profesor.ToListAsync());
         }
 
-
+        public IActionResult Regresar()
+        {
+            //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Administrador");
+        }
 
         // GET: Profesores/Details/5
         public async Task<IActionResult> Details(int? id)
