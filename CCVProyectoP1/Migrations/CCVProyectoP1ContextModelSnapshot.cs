@@ -42,6 +42,12 @@ namespace CCVProyectoP1.Migrations
                     b.Property<DateTime>("FechaEntrega")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("NombreArchivo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RutaArchivo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Titulo")
                         .HasColumnType("nvarchar(max)");
 

@@ -40,6 +40,15 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Clase.Nombre)
         </dd>
+        @if (!string.IsNullOrEmpty(Model.NombreArchivo))
+        {
+            <dt class="col-sm-2">
+                Archivo
+            </dt>
+            <dd class="col-sm-10">
+                <a asp-action="DescargarArchivo" asp-route-id="@Model.Id">@Model.NombreArchivo</a>
+            </dd>
+        }
     </dl>
 </div>
 <div>

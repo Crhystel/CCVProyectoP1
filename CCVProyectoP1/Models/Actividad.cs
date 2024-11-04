@@ -9,5 +9,8 @@
         public DateTime FechaEntrega { get; set; }
         public int ClaseId { get; set; }
         public Clase Clase { get; set; }
+
+        public string NombreArchivo { get; set; } 
+        public string RutaArchivo { get; set; }
     }
 }
