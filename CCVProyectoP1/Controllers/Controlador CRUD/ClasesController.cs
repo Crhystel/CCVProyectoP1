@@ -123,7 +123,7 @@ namespace CCVProyectoP1.Controllers
         }
 
         // GET: Clases/UnirAlumnosAClases
-        public IActionResult UnirAlumnosAClases()
+        public IActionResult UnirAlumnosAClases(int? claseId)
         {
             // Cargar listas de clases y estudiantes para el formulario
             var clases = _context.Clase.ToList();
@@ -132,6 +132,16 @@ namespace CCVProyectoP1.Controllers
             // Pasar las listas a la vista mediante ViewBag
             ViewBag.Clases = new SelectList(clases, "Id", "Nombre");
             ViewBag.Estudiantes = new SelectList(estudiantes, "Id", "Nombre");
+
+            if (claseId.HasValue)
+            {
+                var claseSeleccionada = _context.Clase
+                    .Include(c => c.Profesor)
+                    .Include(c => c.Estudiante)
+                    .FirstOrDefault(c => c.Id == claseId);
+
+                return View(claseSeleccionada);
+            }
 
             return View();
         }
