@@ -8,7 +8,7 @@
 <form asp-action="UnirAlumnosAClases" method="post">
     <div class="form-group">
         <label for="claseId">Seleccione una Clase:</label>
-        <select asp-for="Id" class="form-control" asp-items="ViewBag.Clases">
+        <select asp-for="Id" class="form-control" asp-items="ViewBag.ClasesDropdown">
             <option value="">-- Seleccione una Clase --</option>
         </select>
     </div>
@@ -23,9 +23,14 @@
     <button type="submit" class="btn btn-primary">Unir Estudiante a Clase</button>
 </form>
 
-@if (ViewBag.Message != null)
+<h3>Listado de Clases y sus Estudiantes</h3>
+@foreach (var clase in ViewBag.Clases)
 {
-    <div class="alert alert-success mt-3">
-        @ViewBag.Message
-    </div>
+    <h4>@clase.Nombre</h4>
+    <ul>
+        @foreach (var estudiante in clase.Estudiante)
+        {
+            <li>@estudiante.Nombre</li>
+        }
+    </ul>
 }

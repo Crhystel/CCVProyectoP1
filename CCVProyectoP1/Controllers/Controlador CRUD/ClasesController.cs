@@ -126,20 +126,20 @@ namespace CCVProyectoP1.Controllers
         public IActionResult UnirAlumnosAClases(int? claseId)
         {
             // Cargar listas de clases y estudiantes para el formulario
-            var clases = _context.Clase.ToList();
+            var clasesConEstudiantes = _context.Clase.Include(c => c.Estudiante).ToList();
             var estudiantes = _context.Estudiante.ToList();
 
+            // Crear SelectList para el dropdown de clases
+            ViewBag.ClasesDropdown = new SelectList(clasesConEstudiantes, "Id", "Nombre");
+
             // Pasar las listas a la vista mediante ViewBag
-            ViewBag.Clases = new SelectList(clases, "Id", "Nombre");
+            ViewBag.Clases = clasesConEstudiantes;
             ViewBag.Estudiantes = new SelectList(estudiantes, "Id", "Nombre");
 
+            // Si claseId tiene valor, cargar clase específica y sus estudiantes
             if (claseId.HasValue)
             {
-                var claseSeleccionada = _context.Clase
-                    .Include(c => c.Profesor)
-                    .Include(c => c.Estudiante)
-                    .FirstOrDefault(c => c.Id == claseId);
-
+                var claseSeleccionada = clasesConEstudiantes.FirstOrDefault(c => c.Id == claseId);
                 return View(claseSeleccionada);
             }
 
@@ -162,7 +162,7 @@ namespace CCVProyectoP1.Controllers
             }
 
             // Redirigir de vuelta al índice de Clases
-            return RedirectToAction("Index");
+            return RedirectToAction("UnirAlumnosAClases");
         }
 
         // GET: Clases/Delete/5
