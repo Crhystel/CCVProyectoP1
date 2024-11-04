@@ -22,8 +22,22 @@ namespace CCVProyectoP1.Controllers
         // GET: Actividades
         public async Task<IActionResult> Index()
         {
-            var cCVProyectoP1Context = _context.Actividad.Include(a => a.Clase);
-            return View(await cCVProyectoP1Context.ToListAsync());
+            // Recupera el profesor usando el nombre de usuario
+            var profesor = await _context.Profesor.FirstOrDefaultAsync(p => p.NombreUsuario == User.Identity.Name);
+
+            if (profesor == null)
+            {
+                return Unauthorized(); // O maneja el caso de que el profesor no exista
+            }
+
+            int profesorId = profesor.Id;
+
+            var actividadesFiltradas = _context.Actividad
+                                                .Include(a => a.Clase)
+                                                .Where(a => a.Clase.IdProfesor == profesorId);
+
+            return View(await actividadesFiltradas.ToListAsync());
+
         }
 
         // GET: Actividades/Details/5
