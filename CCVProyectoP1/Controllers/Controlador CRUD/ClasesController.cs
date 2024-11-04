@@ -127,7 +127,8 @@ namespace CCVProyectoP1.Controllers
         public IActionResult UnirAlumnosAClases(int? claseId)
         {
             // Cargar listas de clases y estudiantes para el formulario
-            var clasesConEstudiantes = _context.Clase.Include(c => c.ClaseEstudiantes).ToList();
+            var clasesConEstudiantes = _context.Clase.Include(c => c.ClaseEstudiantes).ThenInclude(e => e.Estudiante)
+                .ToList();  
             var estudiantes = _context.Estudiante.ToList();
 
             // Crear SelectList para el dropdown de clases

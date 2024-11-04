@@ -1,4 +1,4 @@
-﻿@model CCVProyectoP1.Models.Clase
+﻿@model CCVProyectoP1.Models.ClaseEstudiante
 @{
     ViewData["Title"] = "Unir Alumnos a Clases";
 }
@@ -8,14 +8,14 @@
 <form asp-action="UnirAlumnosAClases" method="post">
     <div class="form-group">
         <label for="claseId">Seleccione una Clase:</label>
-        <select asp-for="Id" class="form-control" asp-items="ViewBag.ClasesDropdown">
+        <select asp-for="ClaseId" class="form-control" asp-items="ViewBag.ClasesDropdown">
             <option value="">-- Seleccione una Clase --</option>
         </select>
     </div>
 
     <div class="form-group">
         <label for="estudianteId">Seleccione un Estudiante:</label>
-        <select id="estudianteId" name="estudianteId" class="form-control" asp-items="ViewBag.Estudiantes">
+        <select asp-for="EstudianteId" class="form-control" asp-items="ViewBag.Estudiantes">
             <option value="">-- Seleccione un Estudiante --</option>
         </select>
     </div>
@@ -28,9 +28,9 @@
 {
     <h4>@clase.Nombre</h4>
     <ul>
-        @foreach (var estudiante in clase.Estudiante)
+        @foreach (var claseEstudiante in clase.ClaseEstudiantes)
         {
-            <li>@estudiante.Nombre</li>
+            <li>@claseEstudiante.Estudiante.Nombre</li>
         }
     </ul>
 }
