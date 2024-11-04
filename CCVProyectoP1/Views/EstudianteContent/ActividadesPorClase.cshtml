@@ -1,0 +1,21 @@
+﻿@model IEnumerable<CCVProyectoP1.Models.Actividad>
+
+<h1>Actividades para la Clase</h1>
+
+@if (Model != null && Model.Any())
+{
+    <ul>
+        @foreach (var actividad in Model)
+        {
+            <li>
+                <h2>@actividad.Titulo</h2>
+                <p>@actividad.Descripcion</p>
+                <p><strong>Fecha de entrega:</strong> @actividad.FechaEntrega.ToString("dd/MM/yyyy")</p>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No hay actividades para esta clase actualmente.</p>
+}

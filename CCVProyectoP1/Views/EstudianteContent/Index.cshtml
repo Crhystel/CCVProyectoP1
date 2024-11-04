@@ -7,7 +7,10 @@
     <ul>
         @foreach (var clase in Model)
         {
-            <li>@clase.Nombre</li>
+            <li>
+                @clase.Nombre
+                <a asp-action="ActividadesPorClase" asp-route-claseId="@clase.Id">Ver Actividades</a>
+            </li>
         }
     </ul>
 }

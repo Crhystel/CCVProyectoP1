@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using CCVProyectoP1.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CCVProyectoP1.Controllers
 {
@@ -23,7 +24,16 @@ namespace CCVProyectoP1.Controllers
             ViewData["MostrarSalir"] = true;
             return View(clases);
         }
-      
+
+        public async Task<IActionResult> ActividadesPorClase(int claseId)
+        {
+            var actividades = await _context.Actividad
+                .Where(a => a.ClaseId == claseId)
+                .ToListAsync();
+            return View(actividades);
+        }
+
+
         public async Task<IActionResult> Salir()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
