@@ -11,6 +11,12 @@
                 <h2>@actividad.Titulo</h2>
                 <p>@actividad.Descripcion</p>
                 <p><strong>Fecha de entrega:</strong> @actividad.FechaEntrega.ToString("dd/MM/yyyy")</p>
+
+                <p>
+                    <a asp-controller="Actividades" asp-action="DescargarArchivo" asp-route-id="@actividad.Id">
+                        Descargar archivo relacionado: @actividad.NombreArchivo
+                    </a>
+                </p>
             </li>
         }
     </ul>
