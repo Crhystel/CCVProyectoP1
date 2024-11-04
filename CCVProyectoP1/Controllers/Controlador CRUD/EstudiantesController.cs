@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 using CCVProyectoP1.Data;
 using CCVProyectoP1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CCVProyectoP1.Controllers
 {
+    [Authorize]
     public class EstudiantesController : Controller
     {
         private readonly CCVProyectoP1Context _context;
@@ -56,6 +58,7 @@ namespace CCVProyectoP1.Controllers
                .Cast<RolEnum>()
                .Where(r => r == RolEnum.Estudiante)
                .ToList();
+            
             ViewBag.Rol = rol;
             return View();
         }
@@ -85,12 +88,16 @@ namespace CCVProyectoP1.Controllers
             {
                 return NotFound();
             }
-
-            var estudiante = await _context.Estudiante.FindAsync(id);
+            var estudiante = await _context.Estudiante.FindAsync(id); 
             if (estudiante == null)
             {
                 return NotFound();
             }
+            var rol = new List<SelectListItem>
+            {
+                new SelectListItem{Value=RolEnum.Estudiante.ToString(),Text="Estudiante", Selected=true}
+            };
+            ViewBag.Rol = rol;
             return View(estudiante);
         }
 

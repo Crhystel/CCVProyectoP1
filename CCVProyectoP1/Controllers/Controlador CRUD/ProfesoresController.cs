@@ -10,9 +10,11 @@ using CCVProyectoP1.Models;
 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CCVProyectoP1.Controllers
 {
+    [Authorize]
     public class ProfesoresController : Controller
     {
         private readonly CCVProyectoP1Context _context;

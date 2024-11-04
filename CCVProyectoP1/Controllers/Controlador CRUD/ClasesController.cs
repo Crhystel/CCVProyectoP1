@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 using CCVProyectoP1.Data;
 using CCVProyectoP1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CCVProyectoP1.Controllers
 {
+    [Authorize]
     public class ClasesController : Controller
     {
         private readonly CCVProyectoP1Context _context;
