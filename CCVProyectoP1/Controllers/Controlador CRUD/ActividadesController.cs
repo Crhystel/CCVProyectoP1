@@ -27,7 +27,7 @@ namespace CCVProyectoP1.Controllers
 
             if (profesor == null)
             {
-                return Unauthorized(); // O maneja el caso de que el profesor no exista
+                return Unauthorized(); // maneja el caso de que el profesor no exista
             }
 
             int profesorId = profesor.Id;
