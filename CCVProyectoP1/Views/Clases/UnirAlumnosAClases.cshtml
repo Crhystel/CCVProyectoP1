@@ -7,14 +7,14 @@
 
 <form asp-action="UnirAlumnosAClases" method="post">
     <div class="form-group">
-        <label for="claseId">Seleccione una Clase:</label>
+        <label for="ClaseId">Seleccione una Clase:</label>
         <select asp-for="ClaseId" class="form-control" asp-items="ViewBag.ClasesDropdown">
             <option value="">-- Seleccione una Clase --</option>
         </select>
     </div>
 
     <div class="form-group">
-        <label for="estudianteId">Seleccione un Estudiante:</label>
+        <label for="EstudianteId">Seleccione un Estudiante:</label>
         <select asp-for="EstudianteId" class="form-control" asp-items="ViewBag.Estudiantes">
             <option value="">-- Seleccione un Estudiante --</option>
         </select>

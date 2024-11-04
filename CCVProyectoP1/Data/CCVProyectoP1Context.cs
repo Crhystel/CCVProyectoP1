@@ -26,17 +26,17 @@ namespace CCVProyectoP1.Data
 
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ClaseEstudiante>()
-                .HasKey(e => new { e.ClaseId, e.EstudianteId });
+                .HasKey(c => new { c.ClaseId, c.EstudianteId });
             //Tabla intermedia para hacer la relacion muchos a muchos
 
             modelBuilder.Entity<ClaseEstudiante>()
                 .HasOne(c => c.Clase)
                 .WithMany(c => c.ClaseEstudiantes)
-                .HasForeignKey(c => c.EstudianteId);
+                .HasForeignKey(c => c.ClaseId);
             modelBuilder.Entity<ClaseEstudiante>()
-                .HasOne(ce => ce.Estudiante)
-                .WithMany(e => e.ClaseEstudiantes)
-                .HasForeignKey(ce => ce.EstudianteId);
+                .HasOne(c => c.Estudiante)
+                .WithMany(c => c.ClaseEstudiantes)
+                .HasForeignKey(c => c.EstudianteId);
           
 
 
