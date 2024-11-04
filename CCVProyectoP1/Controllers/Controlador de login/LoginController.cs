@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using CCVProyectoP1.Data;
-using CCVProyecto1._1.Models;
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using CCVProyectoP1.Models;
 
 
 namespace CCVProyectoP1.Controllers

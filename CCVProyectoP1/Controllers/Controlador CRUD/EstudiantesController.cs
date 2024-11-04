@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CCVProyecto1._1.Models;
+
 using CCVProyectoP1.Data;
+using CCVProyectoP1.Models;
 
 namespace CCVProyectoP1.Controllers
 {

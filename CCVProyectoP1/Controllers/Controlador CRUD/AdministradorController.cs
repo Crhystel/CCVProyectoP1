@@ -1,4 +1,4 @@
-﻿using CCVProyecto1._1.Models;
+﻿
 using CCVProyectoP1.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

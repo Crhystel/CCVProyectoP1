@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCVProyectoP1.Migrations
 {
     [DbContext(typeof(CCVProyectoP1Context))]
-    [Migration("20241104005858_mnf")]
-    partial class mnf
+    [Migration("20241104042055_mi")]
+    partial class mi
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace CCVProyectoP1.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CCVProyecto1._1.Models.Administrador", b =>
+            modelBuilder.Entity("CCVProyectoP1.Models.Administrador", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -73,7 +73,7 @@ namespace CCVProyectoP1.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CCVProyecto1._1.Models.Clase", b =>
+            modelBuilder.Entity("CCVProyectoP1.Models.Clase", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -95,7 +95,22 @@ namespace CCVProyectoP1.Migrations
                     b.ToTable("Clase");
                 });
 
-            modelBuilder.Entity("CCVProyecto1._1.Models.Estudiante", b =>
+            modelBuilder.Entity("CCVProyectoP1.Models.ClaseEstudiante", b =>
+                {
+                    b.Property<int>("ClaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EstudianteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClaseId", "EstudianteId");
+
+                    b.HasIndex("EstudianteId");
+
+                    b.ToTable("ClaseEstudiante");
+                });
+
+            modelBuilder.Entity("CCVProyectoP1.Models.Estudiante", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -177,22 +192,7 @@ namespace CCVProyectoP1.Migrations
                     b.ToTable("Profesor");
                 });
 
-            modelBuilder.Entity("ClaseEstudiante", b =>
-                {
-                    b.Property<int>("ClaseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EstudianteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ClaseId", "EstudianteId");
-
-                    b.HasIndex("EstudianteId");
-
-                    b.ToTable("ClaseEstudiante");
-                });
-
-            modelBuilder.Entity("CCVProyecto1._1.Models.Clase", b =>
+            modelBuilder.Entity("CCVProyectoP1.Models.Clase", b =>
                 {
                     b.HasOne("CCVProyectoP1.Models.Profesor", "Profesor")
                         .WithMany()
@@ -203,19 +203,33 @@ namespace CCVProyectoP1.Migrations
                     b.Navigation("Profesor");
                 });
 
-            modelBuilder.Entity("ClaseEstudiante", b =>
+            modelBuilder.Entity("CCVProyectoP1.Models.ClaseEstudiante", b =>
                 {
-                    b.HasOne("CCVProyecto1._1.Models.Clase", null)
-                        .WithMany()
-                        .HasForeignKey("ClaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CCVProyecto1._1.Models.Estudiante", null)
-                        .WithMany()
+                    b.HasOne("CCVProyectoP1.Models.Clase", "Clase")
+                        .WithMany("ClaseEstudiantes")
                         .HasForeignKey("EstudianteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("CCVProyectoP1.Models.Estudiante", "Estudiante")
+                        .WithMany("ClaseEstudiantes")
+                        .HasForeignKey("EstudianteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Clase");
+
+                    b.Navigation("Estudiante");
+                });
+
+            modelBuilder.Entity("CCVProyectoP1.Models.Clase", b =>
+                {
+                    b.Navigation("ClaseEstudiantes");
+                });
+
+            modelBuilder.Entity("CCVProyectoP1.Models.Estudiante", b =>
+                {
+                    b.Navigation("ClaseEstudiantes");
                 });
 #pragma warning restore 612, 618
         }

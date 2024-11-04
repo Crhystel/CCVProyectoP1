@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using CCVProyectoP1.Data;
 using CCVProyectoP1.Models;
-using CCVProyecto1._1.Models;
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<CCVProyectoP1Context>(options =>

@@ -1,4 +1,4 @@
-﻿using CCVProyecto1._1.Models;
+﻿
 using CCVProyectoP1.Models;
 using Microsoft.EntityFrameworkCore;
 namespace CCVProyectoP1.Data

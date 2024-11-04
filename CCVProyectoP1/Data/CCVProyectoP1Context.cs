@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CCVProyectoP1.Models;
-using CCVProyecto1._1.Models;
+
 
 namespace CCVProyectoP1.Data
 {
@@ -14,20 +14,31 @@ namespace CCVProyectoP1.Data
             : base(options)
         {
         }
-        public DbSet<CCVProyecto1._1.Models.Administrador> Administrador { get; set; } = default!;
+        public DbSet<CCVProyectoP1.Models.Administrador> Administrador { get; set; } = default!;
 
         public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } 
-        public DbSet<CCVProyecto1._1.Models.Estudiante> Estudiante { get; set; }
+        public DbSet<CCVProyectoP1.Models.Estudiante>Estudiante { get; set; }
 
-        public DbSet<CCVProyecto1._1.Models.Clase> Clase { get; set; }
+        public DbSet<CCVProyectoP1.Models.Clase> Clase { get; set; }
+        public DbSet<CCVProyectoP1.Models.ClaseEstudiante> ClaseEstudiante { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ClaseEstudiante>()
+                .HasKey(e => new { e.ClaseId, e.EstudianteId });
+            //Tabla intermedia para hacer la relacion muchos a muchos
 
-            modelBuilder.Entity<Clase>()
-            .HasMany(c => c.Estudiante)
-            .WithMany(e => e.Clase);
+            modelBuilder.Entity<ClaseEstudiante>()
+                .HasOne(c => c.Clase)
+                .WithMany(c => c.ClaseEstudiantes)
+                .HasForeignKey(c => c.EstudianteId);
+            modelBuilder.Entity<ClaseEstudiante>()
+                .HasOne(ce => ce.Estudiante)
+                .WithMany(e => e.ClaseEstudiantes)
+                .HasForeignKey(ce => ce.EstudianteId);
+          
+
 
             modelBuilder.Entity<Administrador>().HasData(new Administrador
             {

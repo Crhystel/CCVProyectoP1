@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using CCVProyectoP1.Data;
-using CCVProyecto1._1.Models;
+
 
 namespace CCVProyectoP1.Controllers
 {

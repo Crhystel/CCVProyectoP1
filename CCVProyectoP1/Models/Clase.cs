@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using CCVProyectoP1.Models;
 
-namespace CCVProyecto1._1.Models
+namespace CCVProyectoP1.Models
 {
     public class Clase
     {
@@ -13,11 +13,12 @@ namespace CCVProyecto1._1.Models
         public string Nombre { get; set; }
         
         public Profesor Profesor { get; set; }
-
         [ForeignKey(nameof(Profesor))]
         [Required(ErrorMessage = "Este campo es obligatorio.")]
         public int IdProfesor { get; set; }
-        public ICollection<Estudiante> Estudiante { get; set; } = new List<Estudiante>();
+        public ICollection<ClaseEstudiante> ClaseEstudiantes { get; set; } = new List<ClaseEstudiante>();
+
+
 
     }
 }

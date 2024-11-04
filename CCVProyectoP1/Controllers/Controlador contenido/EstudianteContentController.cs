@@ -17,7 +17,7 @@ namespace CCVProyectoP1.Controllers
         public IActionResult Index()
         {
             var estudianteId = int.Parse(User.FindFirst("UserId")?.Value ?? "0");
-            var clases = _context.Clase.Where(c => c.Estudiante.Any(e => e.Id == estudianteId)).ToList();
+            var clases = _context.Clase.Where(c => c.ClaseEstudiantes.Any(e => e.EstudianteId == estudianteId)).ToList();
 
 
             ViewData["MostrarSalir"] = true;

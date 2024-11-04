@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CCVProyecto1._1.Models
+namespace CCVProyectoP1.Models
 {
     public enum RolEnum
     {

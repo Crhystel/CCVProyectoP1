@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CCVProyecto1._1.Models;
+
 using CCVProyectoP1.Data;
+using CCVProyectoP1.Models;
 
 namespace CCVProyectoP1.Controllers
 {
@@ -126,7 +127,7 @@ namespace CCVProyectoP1.Controllers
         public IActionResult UnirAlumnosAClases(int? claseId)
         {
             // Cargar listas de clases y estudiantes para el formulario
-            var clasesConEstudiantes = _context.Clase.Include(c => c.Estudiante).ToList();
+            var clasesConEstudiantes = _context.Clase.Include(c => c.ClaseEstudiantes).ToList();
             var estudiantes = _context.Estudiante.ToList();
 
             // Crear SelectList para el dropdown de clases
@@ -151,17 +152,22 @@ namespace CCVProyectoP1.Controllers
         public IActionResult UnirAlumnosAClases(int claseId, int estudianteId)
         {
             // Buscar la clase y el estudiante seleccionados
-            var clase = _context.Clase.Include(c => c.Estudiante).FirstOrDefault(c => c.Id == claseId);
-            var estudiante = _context.Estudiante.Find(estudianteId);
+            var existeRelacion = _context.ClaseEstudiante
+                .Any(ce => ce.ClaseId == claseId && ce.EstudianteId == estudianteId);
 
-            // Agregar el estudiante a la clase y guardar los cambios
-            if (clase != null && estudiante != null && !clase.Estudiante.Contains(estudiante))
+            if (!existeRelacion)
             {
-                clase.Estudiante.Add(estudiante);
+                // Crear una nueva relación en la tabla intermedia
+                var nuevaRelacion = new ClaseEstudiante
+                {
+                    ClaseId = claseId,
+                    EstudianteId = estudianteId
+                };
+
+                _context.ClaseEstudiante.Add(nuevaRelacion);
                 _context.SaveChanges();
             }
 
-            // Redirigir de vuelta al índice de Clases
             return RedirectToAction("UnirAlumnosAClases");
         }
 
