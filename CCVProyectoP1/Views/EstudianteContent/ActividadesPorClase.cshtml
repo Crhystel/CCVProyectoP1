@@ -12,11 +12,15 @@
                 <p>@actividad.Descripcion</p>
                 <p><strong>Fecha de entrega:</strong> @actividad.FechaEntrega.ToString("dd/MM/yyyy")</p>
 
-                <p>
-                    <a asp-controller="Actividades" asp-action="DescargarArchivo" asp-route-id="@actividad.Id">
-                        Descargar archivo relacionado: @actividad.NombreArchivo
-                    </a>
-                </p>
+                @* Enlace para descargar el archivo solo si existe *@
+                @if (!string.IsNullOrEmpty(actividad.NombreArchivo) && !string.IsNullOrEmpty(actividad.RutaArchivo))
+                {
+                    <p>
+                        <a asp-controller="Actividades" asp-action="DescargarArchivo" asp-route-id="@actividad.Id">
+                            Descargar archivo relacionado: @actividad.NombreArchivo
+                        </a>
+                    </p>
+                }
             </li>
         }
     </ul>
