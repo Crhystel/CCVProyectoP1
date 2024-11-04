@@ -21,6 +21,7 @@ namespace CCVProyectoP1.Data
 
         public DbSet<CCVProyectoP1.Models.Clase> Clase { get; set; }
         public DbSet<CCVProyectoP1.Models.ClaseEstudiante> ClaseEstudiante { get; set; }
+        public DbSet<CCVProyectoP1.Models.Actividad> Actividad { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

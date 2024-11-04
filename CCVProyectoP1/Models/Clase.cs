@@ -18,6 +18,7 @@ namespace CCVProyectoP1.Models
         public int IdProfesor { get; set; }
         public ICollection<ClaseEstudiante> ClaseEstudiantes { get; set; } = new List<ClaseEstudiante>();
 
+        public ICollection<Actividad> Actividades { get; set; } = new List<Actividad>();
 
 
     }
