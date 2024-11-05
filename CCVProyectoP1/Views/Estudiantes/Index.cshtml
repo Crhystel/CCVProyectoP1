@@ -11,10 +11,10 @@
 <body>
 <div class="pb-5 mt-5 ">
         <p class="mb-3">
-            <a class="btn btn-info float-right ms-3" asp-controller="Estudiantes" asp-action="Regresar">Regresar</a>
+            <a class="btn btn-primary float-right ms-3" asp-controller="Estudiantes" asp-action="Regresar">Regresar</a>
         </p>
         <p class="mb-3 mr">
-            <a class="btn btn-success float-right" asp-controller="Estudiantes" asp-action="Create">Añadir Estudiante</a>
+            <a class="btn btn-primary float-right" asp-controller="Estudiantes" asp-action="Create">Añadir Estudiante</a>
         </p>
        
 </div>
@@ -71,9 +71,9 @@
                 @Html.DisplayFor(modelItem => item.Rol)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detalles</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Borrar</a>
             </td>
         </tr>
 }

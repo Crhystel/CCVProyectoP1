@@ -7,7 +7,7 @@
 <h1>Actividad</h1>
 
 <p>
-    <a asp-action="Create">Crear nueva actividad</a>
+    <a asp-action="Create" class="btn btn-primary">Crear nueva actividad</a>
 </p>
 <table class="table">
     <thead>
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.Clase.Nombre)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detalles</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Borrar</a>
             </td>
         </tr>
 }
