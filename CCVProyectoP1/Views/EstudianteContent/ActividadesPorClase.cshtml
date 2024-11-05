@@ -16,7 +16,7 @@
                 @if (!string.IsNullOrEmpty(actividad.NombreArchivo) && !string.IsNullOrEmpty(actividad.RutaArchivo))
                 {
                     <p>
-                        <a asp-controller="Actividades" asp-action="DescargarArchivo" asp-route-id="@actividad.Id">
+                        <a asp-controller="Actividades" asp-action="DescargarArchivo" asp-route-id="@actividad.Id" class="btn btn-primary">
                             Descargar archivo relacionado: @actividad.NombreArchivo
                         </a>
                     </p>
