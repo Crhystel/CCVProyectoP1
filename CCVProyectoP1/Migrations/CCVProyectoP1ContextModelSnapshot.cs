@@ -42,12 +42,6 @@ namespace CCVProyectoP1.Migrations
                     b.Property<DateTime>("FechaEntrega")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("NombreArchivo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RutaArchivo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Titulo")
                         .HasColumnType("nvarchar(max)");
 
@@ -55,7 +49,7 @@ namespace CCVProyectoP1.Migrations
 
                     b.HasIndex("ClaseId");
 
-                    b.ToTable("Actividad");
+                    b.ToTable("Actividad", (string)null);
                 });
 
             modelBuilder.Entity("CCVProyectoP1.Models.Administrador", b =>
@@ -92,7 +86,7 @@ namespace CCVProyectoP1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Administrador");
+                    b.ToTable("Administrador", (string)null);
 
                     b.HasData(
                         new
@@ -126,7 +120,7 @@ namespace CCVProyectoP1.Migrations
 
                     b.HasIndex("IdProfesor");
 
-                    b.ToTable("Clase");
+                    b.ToTable("Clase", (string)null);
                 });
 
             modelBuilder.Entity("CCVProyectoP1.Models.ClaseEstudiante", b =>
@@ -141,7 +135,7 @@ namespace CCVProyectoP1.Migrations
 
                     b.HasIndex("EstudianteId");
 
-                    b.ToTable("ClaseEstudiante");
+                    b.ToTable("ClaseEstudiante", (string)null);
                 });
 
             modelBuilder.Entity("CCVProyectoP1.Models.Estudiante", b =>
@@ -182,7 +176,7 @@ namespace CCVProyectoP1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Estudiante");
+                    b.ToTable("Estudiante", (string)null);
                 });
 
             modelBuilder.Entity("CCVProyectoP1.Models.Profesor", b =>
@@ -223,7 +217,7 @@ namespace CCVProyectoP1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Profesor");
+                    b.ToTable("Profesor", (string)null);
                 });
 
             modelBuilder.Entity("CCVProyectoP1.Models.Actividad", b =>
