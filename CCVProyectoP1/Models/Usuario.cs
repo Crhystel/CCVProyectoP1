@@ -13,8 +13,9 @@ namespace CCVProyectoP1.Models
         [Key]
         public int Id { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio.")]
-        [Range(1000000000, 9999999999, ErrorMessage = "Cédula inválida")]
-        public long Cedula { get; set; }
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "La cédula debe tener exactamente 10 dígitos.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "La cédula debe contener solo números.")]
+        public string Cedula { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio.")]
         [MaxLength(50)]
         public string Nombre { get; set; }
