@@ -17,7 +17,8 @@ namespace CCVProyectoP1.Models
         [RegularExpression("^[0-9]+$", ErrorMessage = "La cédula debe contener solo números.")]
         public string Cedula { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio.")]
-        [MaxLength(50)]
+        [Display(Name = "Nombre Completo")]
+        [MaxLength(100)]
         public string Nombre { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio.")]
         [Display(Name = "Usuario")]
