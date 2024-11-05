@@ -28,11 +28,25 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="mt-4">
-        <a asp-controller="Clases" asp-action="Index" class="btn btn-primary">Crear Clases</a>
-    </div>
-    <div class="mt-4">
-        <a asp-controller="Clases" asp-action="UnirAlumnosAClases" class="btn btn-primary">Unir Alumnos a Clases</a>
+        <div class="col-md-4">
+            <div class="card" style="width: 100%;">
+                <img class="card-img-top" src="https://www.elsoldesinaloa.com.mx/local/5l186b-salon-de-clases.jpg/ALTERNATES/LANDSCAPE_1140/salon%20-de-%20clases.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Crear Clases</h5>
+                    <p class="card-text">Accede al formulario para crear una clase nueva en el sistema.</p>
+                    <a asp-controller="Clases" asp-action="Index" class="btn btn-primary">Ingresar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 100%;">
+                <img class="card-img-top" src="https://90lineas.com/wp-content/uploads/2024/06/clases.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Unir Alumnos a clases</h5>
+                    <p class="card-text">Inscribe a los alumnos en sus respectvas clases.</p>
+                    <a asp-controller="Clases" asp-action="UnirAlumnosAClases" class="btn btn-primary">Ingresar</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
