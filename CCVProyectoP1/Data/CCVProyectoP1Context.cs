@@ -44,7 +44,7 @@ namespace CCVProyectoP1.Data
             modelBuilder.Entity<Administrador>().HasData(new Administrador
             {
                 Id = 1,
-                Cedula = 1234567890,
+                Cedula = "1234567890",
                 Nombre = "Roberto",
                 NombreUsuario = "admin",
                 Contrasenia = "admin",
