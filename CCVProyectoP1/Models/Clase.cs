@@ -27,6 +27,8 @@ namespace CCVProyectoP1.Models
         [ForeignKey(nameof(Profesor))]
         [Required(ErrorMessage = "Este campo es obligatorio.")]
         public int IdProfesor { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio.")]
+        
         public ICollection<ClaseEstudiante> ClaseEstudiantes { get; set; } = new List<ClaseEstudiante>();
 
         public ICollection<Actividad> Actividades { get; set; } = new List<Actividad>();

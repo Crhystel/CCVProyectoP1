@@ -21,3 +21,23 @@
         profesorSelect.innerHTML = '<option value="">Seleccione un profesor</option>';
     }
 }
+function cargarEstudiantesPorGrado() {
+    var gradoSeleccionado = document.getElementById("GradoSelect").value;
+    var estduianteSelect = document.getElementById("EstudianteSelect");
+    if (gradoSeleccionado) {
+        fetch(`/Estudiantes/ObtenerPorGrado?grado=${gradoSeleccionado}`)
+            .then(response => response.json())
+            .then(estudiantes => {
+                estduianteSelect.innerHTML = '<option value="">Seleccione un Estudiante</option>';
+                estudiantes.forEach(estudiantes => {
+                    var option = document.createElement("option");
+                    option.value = estudiantes.id;
+                    option.textContent = estudiantes.nombre;
+                    estduianteSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error al cargar estudiantes:', error));
+    } else {
+        estduianteSelect.innerHTML = '<option value="">Seleccione un Estudiante</option>';
+    }
+}

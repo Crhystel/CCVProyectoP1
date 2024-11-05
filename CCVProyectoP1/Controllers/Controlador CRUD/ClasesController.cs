@@ -59,6 +59,14 @@ namespace CCVProyectoP1.Controllers
                     Text = c.ToString()
 
                 }).ToList();
+            var grado = Enum.GetValues(typeof(GradoEnum))
+                .Cast<GradoEnum>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+                }).ToList();
+            ViewBag.Grado = grado;
             ViewBag.Clases = clases;
             ViewBag.IdProfesor = new SelectList(_context.Profesor, "Id", "Nombre");
 
@@ -104,6 +112,14 @@ namespace CCVProyectoP1.Controllers
                    Text = c.ToString(),
                    
                }).ToList();
+            var grado = Enum.GetValues(typeof(GradoEnum))
+                .Cast<GradoEnum>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+                }).ToList();
+            ViewBag.Grado = grado;
             ViewBag.Clases = clases;
             //ViewData["IdProfesor"] = new SelectList(_context.Profesor, "Id", "Contrasenia", clase.IdProfesor);
             return View(clase);
@@ -152,11 +168,17 @@ namespace CCVProyectoP1.Controllers
             var clasesConEstudiantes = _context.Clase.Include(c => c.ClaseEstudiantes).ThenInclude(e => e.Estudiante)
                 .ToList();  
             var estudiantes = _context.Estudiante.ToList();
+            var gradoClases = Enum.GetValues(typeof(GradoEnum))
+                .Cast<GradoEnum>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+                }).ToList();
 
-          
             ViewBag.ClasesDropdown = new SelectList(clasesConEstudiantes, "Id", "CNombre");
 
-           
+            ViewBag.Grado = gradoClases;
             ViewBag.Clases = clasesConEstudiantes;
             ViewBag.Estudiantes = new SelectList(estudiantes, "Id", "Nombre");
 

@@ -12,10 +12,16 @@
             <option value="">-- Seleccione una Clase --</option>
         </select>
     </div>
+    <div class="form-group">
+        <label for="Grado">Seleccione un Grado:</label>
+        <select asp-for="Grado" class="form-control" asp-items="ViewBag.Grado" id="GradoSelect" onchange="cargarEstudiantesPorGrado()">
+            <option value="">-- Seleccione un Grado --</option>
+        </select>
+    </div>
 
     <div class="form-group">
         <label for="EstudianteId">Seleccione un Estudiante:</label>
-        <select asp-for="EstudianteId" class="form-control" asp-items="ViewBag.Estudiantes">
+        <select asp-for="EstudianteId" class="form-control" asp-items="ViewBag.Estudiantes" id="EstudianteSelect">
             <option value="">-- Seleccione un Estudiante --</option>
         </select>
     </div>
@@ -30,10 +36,16 @@
     <ul>
         @foreach (var claseEstudiante in clase.ClaseEstudiantes)
         {
-            <li>@claseEstudiante.Estudiante.Nombre</li>
+            <li>@claseEstudiante.Estudiante.Nombre </li>
         }
     </ul>
 }
 <div class="d-grid gap-2 col-6 mx-auto">
     <button class="btn btn-dark" type="button" onclick="window.location.href='http://localhost:5190/Administrador/Index'">Regresar</button>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/site.js"></script>
+}

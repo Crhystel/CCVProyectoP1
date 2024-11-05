@@ -18,7 +18,7 @@ namespace CCVProyectoP1.Data
 
         public DbSet<CCVProyectoP1.Models.Profesor> Profesor { get; set; } 
         public DbSet<CCVProyectoP1.Models.Estudiante>Estudiante { get; set; }
-
+        
         public DbSet<CCVProyectoP1.Models.Clase> Clase { get; set; }
         public DbSet<CCVProyectoP1.Models.ClaseEstudiante> ClaseEstudiante { get; set; }
         public DbSet<CCVProyectoP1.Models.Actividad> Actividad { get; set; }
@@ -38,7 +38,10 @@ namespace CCVProyectoP1.Data
                 .HasOne(c => c.Estudiante)
                 .WithMany(c => c.ClaseEstudiantes)
                 .HasForeignKey(c => c.EstudianteId);
-          
+            modelBuilder.Entity<ClaseEstudiante>()
+                .Property(c => c.Grado)
+                .IsRequired();
+
 
 
             modelBuilder.Entity<Administrador>().HasData(new Administrador

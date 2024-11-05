@@ -14,7 +14,10 @@ namespace CCVProyectoP1.Models
         public int EstudianteId { get; set; }
       
         public Estudiante Estudiante { get; set; }
-      
+        [Required]
+        public GradoEnum Grado { get; set; }
+
+
     }
    
 }

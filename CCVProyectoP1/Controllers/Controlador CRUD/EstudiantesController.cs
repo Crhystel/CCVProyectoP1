@@ -169,6 +169,13 @@ namespace CCVProyectoP1.Controllers
 
             return View(estudiante);
         }
+        public async Task<IActionResult> ObtenerPorGrado(GradoEnum grado)
+        {
+            var estudinates = await _context.Estudiante
+                .Where(c => c.Grado == grado)
+                .Select(c => new { c.Id, c.Nombre }).ToListAsync();
+            return Json(estudinates);
+        }
 
         // POST: Estudiantes/Delete/5
         [HttpPost, ActionName("Delete")]

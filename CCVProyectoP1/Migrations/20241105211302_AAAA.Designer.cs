@@ -4,6 +4,7 @@ using CCVProyectoP1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCVProyectoP1.Migrations
 {
     [DbContext(typeof(CCVProyectoP1Context))]
-    partial class CCVProyectoP1ContextModelSnapshot : ModelSnapshot
+    [Migration("20241105211302_AAAA")]
+    partial class AAAA
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,6 +123,9 @@ namespace CCVProyectoP1.Migrations
                     b.Property<int>("CNombre")
                         .HasColumnType("int");
 
+                    b.Property<int>("Grado")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdProfesor")
                         .HasColumnType("int");
 
@@ -136,9 +142,6 @@ namespace CCVProyectoP1.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("EstudianteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Grado")
                         .HasColumnType("int");
 
                     b.HasKey("ClaseId", "EstudianteId");
