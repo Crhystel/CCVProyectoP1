@@ -7,6 +7,7 @@ namespace CCVProyectoP1.Models
     public class Profesor: Usuario
     {
         [Required(ErrorMessage = "Este campo es obligatorio.")]
-        public string Materia {  get; set; }    
+        public Clase.ClaseEnum Clase {  get; set; }
+        //public ICollection<Clase> Clases { get; set; }
     }
 }

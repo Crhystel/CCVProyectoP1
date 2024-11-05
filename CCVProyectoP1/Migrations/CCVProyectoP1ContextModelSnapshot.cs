@@ -117,12 +117,11 @@ namespace CCVProyectoP1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("IdProfesor")
+                    b.Property<int>("CNombre")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdProfesor")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -202,6 +201,9 @@ namespace CCVProyectoP1.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<int>("Clase")
+                        .HasColumnType("int");
+
                     b.Property<string>("Contrasenia")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -209,10 +211,6 @@ namespace CCVProyectoP1.Migrations
 
                     b.Property<int>("Edad")
                         .HasColumnType("int");
-
-                    b.Property<string>("Materia")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

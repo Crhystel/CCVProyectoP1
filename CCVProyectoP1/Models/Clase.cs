@@ -6,11 +6,22 @@ namespace CCVProyectoP1.Models
 {
     public class Clase
     {
+        public enum ClaseEnum
+        {
+            Biologia,
+            Fisica,
+            Matematicas,
+            Historia,
+            Ciudadania,
+            Filosofia,
+            Quimica
+        }
         [Key]
    
         public int Id { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio.")]
-        public string Nombre { get; set; }
+        [Display(Name ="Clase")]
+        public ClaseEnum CNombre { get; set; }
         
         public Profesor Profesor { get; set; }
         [ForeignKey(nameof(Profesor))]

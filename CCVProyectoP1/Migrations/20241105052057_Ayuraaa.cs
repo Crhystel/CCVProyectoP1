@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CCVProyectoP1.Migrations
 {
     /// <inheritdoc />
-    public partial class MicracionAyura : Migration
+    public partial class Ayuraaa : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,7 +54,7 @@ namespace CCVProyectoP1.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Materia = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Clase = table.Column<int>(type: "int", nullable: false),
                     Cedula = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     NombreUsuario = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -73,7 +73,7 @@ namespace CCVProyectoP1.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CNombre = table.Column<int>(type: "int", nullable: false),
                     IdProfesor = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

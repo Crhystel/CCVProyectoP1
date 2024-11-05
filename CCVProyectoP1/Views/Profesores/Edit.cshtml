@@ -16,10 +16,12 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Materia" class="control-label"></label>
-                <input asp-for="Materia" class="form-control" />
-                <span asp-validation-for="Materia" class="text-danger"></span>
-            </div>
+                <label asp-for="Clase" class="control-label"></label>
+                <select asp-for="Clase" class="form-control" asp-items="ViewBag.Clases">
+                   <option value=""></option>
+                </select>
+                <span asp-validation-for="Clase" class="text-danger"></span>
+            </div> 
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Cedula" class="control-label"></label>
@@ -53,6 +55,7 @@
                 </select>
                 <span asp-validation-for="Rol" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>

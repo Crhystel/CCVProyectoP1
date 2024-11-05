@@ -51,7 +51,17 @@ namespace CCVProyectoP1.Controllers
         // GET: Clases/Create
         public IActionResult Create()
         {
-            ViewData["IdProfesor"] = new SelectList(_context.Profesor, "Id", "Nombre");
+            var clases = Enum.GetValues(typeof(Clase.ClaseEnum))
+                .Cast<Clase.ClaseEnum>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+
+                }).ToList();
+            ViewBag.Clases = clases;
+            ViewBag.IdProfesor = new SelectList(_context.Profesor, "Id", "Nombre");
+
             return View();
         }
 
@@ -60,7 +70,7 @@ namespace CCVProyectoP1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,IdProfesor")] Clase clase)
+        public async Task<IActionResult> Create([Bind("Id,CNombre,IdProfesor")] Clase clase)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +78,8 @@ namespace CCVProyectoP1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdProfesor"] = new SelectList(_context.Profesor, "Id", "Contrasenia", clase.IdProfesor);
+            ViewBag.IdProfesor = new SelectList(_context.Profesor, "Id", "Nombre");
+
             return View(clase);
         }
 
@@ -85,7 +96,16 @@ namespace CCVProyectoP1.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdProfesor"] = new SelectList(_context.Profesor, "Id", "Contrasenia", clase.IdProfesor);
+            var clases = Enum.GetValues(typeof(Clase.ClaseEnum))
+               .Cast<Clase.ClaseEnum>()
+               .Select(c => new SelectListItem
+               {
+                   Value = c.ToString(),
+                   Text = c.ToString(),
+                   
+               }).ToList();
+            ViewBag.Clases = clases;
+            //ViewData["IdProfesor"] = new SelectList(_context.Profesor, "Id", "Contrasenia", clase.IdProfesor);
             return View(clase);
         }
 
@@ -94,7 +114,7 @@ namespace CCVProyectoP1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,IdProfesor")] Clase clase)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CNombre,IdProfesor")] Clase clase)
         {
             if (id != clase.Id)
             {
@@ -121,26 +141,26 @@ namespace CCVProyectoP1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdProfesor"] = new SelectList(_context.Profesor, "Id", "Contrasenia", clase.IdProfesor);
+            ViewData["IdProfesor"] = new SelectList(_context.Profesor, "Id", "Nombre", clase.IdProfesor);
             return View(clase);
         }
 
         // GET: Clases/UnirAlumnosAClases
         public IActionResult UnirAlumnosAClases(int? claseId)
         {
-            // Cargar listas de clases y estudiantes para el formulario
+            
             var clasesConEstudiantes = _context.Clase.Include(c => c.ClaseEstudiantes).ThenInclude(e => e.Estudiante)
                 .ToList();  
             var estudiantes = _context.Estudiante.ToList();
 
-            // Crear SelectList para el dropdown de clases
-            ViewBag.ClasesDropdown = new SelectList(clasesConEstudiantes, "Id", "Nombre");
+          
+            ViewBag.ClasesDropdown = new SelectList(clasesConEstudiantes, "Id", "CNombre");
 
-            // Pasar las listas a la vista mediante ViewBag
+           
             ViewBag.Clases = clasesConEstudiantes;
             ViewBag.Estudiantes = new SelectList(estudiantes, "Id", "Nombre");
 
-            // Si claseId tiene valor, cargar clase específica y sus estudiantes
+            
             if (claseId.HasValue)
             {
                 var claseSeleccionada = clasesConEstudiantes.FirstOrDefault(c => c.Id == claseId);
@@ -154,13 +174,13 @@ namespace CCVProyectoP1.Controllers
         [HttpPost]
         public IActionResult UnirAlumnosAClases(int claseId, int estudianteId)
         {
-            // Buscar la clase y el estudiante seleccionados
+           
             var existeRelacion = _context.ClaseEstudiante
                 .Any(ce => ce.ClaseId == claseId && ce.EstudianteId == estudianteId);
 
             if (!existeRelacion)
             {
-                // Crear una nueva relación en la tabla intermedia
+               
                 var nuevaRelacion = new ClaseEstudiante
                 {
                     ClaseId = claseId,

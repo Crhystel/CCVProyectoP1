@@ -26,7 +26,7 @@
 <h3>Listado de Clases y sus Estudiantes</h3>
 @foreach (var clase in ViewBag.Clases)
 {
-    <h4>@clase.Nombre</h4>
+    <h4>@clase.CNombre</h4>
     <ul>
         @foreach (var claseEstudiante in clase.ClaseEstudiantes)
         {

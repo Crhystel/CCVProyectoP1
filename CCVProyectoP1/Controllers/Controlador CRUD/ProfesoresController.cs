@@ -61,7 +61,16 @@ namespace CCVProyectoP1.Controllers
                .Cast<RolEnum>()
                .Where(r => r == RolEnum.Profesor )
                .ToList();
+            var clases = Enum.GetValues(typeof(Clase.ClaseEnum))
+                .Cast<Clase.ClaseEnum>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+                }).ToList();
             ViewBag.Rol = rol;
+            ViewBag.Clases = clases;
+            
             return View();
         }
 
@@ -70,7 +79,7 @@ namespace CCVProyectoP1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Materia,Id,Cedula,Nombre,NombreUsuario,Contrasenia,Edad,Rol")] Profesor profesor)
+        public async Task<IActionResult> Create([Bind("Clase,Id,Cedula,Nombre,NombreUsuario,Contrasenia,Edad,Rol")] Profesor profesor)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +107,16 @@ namespace CCVProyectoP1.Controllers
             {
                 new SelectListItem{Value=RolEnum.Profesor.ToString(),Text="Profesor", Selected=true}
             };
+            var clases = Enum.GetValues(typeof(Clase.ClaseEnum))
+                .Cast<Clase.ClaseEnum>()
+                .Select(c => new SelectListItem
+                {
+                    Value=c.ToString(),
+                    Text=c.ToString(),
+                    Selected=c==profesor.Clase
+                }).ToList();
             ViewBag.Rol = rol;
+            ViewBag.Clases = clases;
             //ViewBag.Rol = new SelectList(Enum.GetValues(typeof(RolEnum)), profesor.Rol);
             return View(profesor);
         }
@@ -108,7 +126,7 @@ namespace CCVProyectoP1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Materia,Id,Cedula,Nombre,NombreUsuario,Contrasenia,Edad,Rol")] Profesor profesor)
+        public async Task<IActionResult> Edit(int id, [Bind("Clase,Id,Cedula,Nombre,NombreUsuario,Contrasenia,Edad,Rol")] Profesor profesor)
         {
             if (id != profesor.Id)
             {
@@ -154,6 +172,13 @@ namespace CCVProyectoP1.Controllers
             }
 
             return View(profesor);
+        }
+        public async Task<IActionResult> ObtenerPorClase(Clase.ClaseEnum clase)
+        {
+            var profesores= await _context.Profesor
+                .Where(c=> c.Clase==clase)
+                .Select(c=> new {c.Id, c.Nombre}).ToListAsync();
+            return Json(profesores);
         }
 
         // POST: Profesores/Delete/5

@@ -18,11 +18,15 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
             <div class="form-group">
-                <label asp-for="Materia" class="control-label"></label>
-                <input asp-for="Materia" class="form-control" />
-                <span asp-validation-for="Materia" class="text-danger"></span>
+                <label asp-for="Clase" class="control-label"></label>
+                <select asp-for="Clase" class="form-control" asp-items="ViewBag.Clases">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="Clase" class="text-danger"></span>
             </div>
+          
             <div class="form-group">
                 <label asp-for="Cedula" class="control-label"></label>
                 <input asp-for="Cedula" class="form-control" />

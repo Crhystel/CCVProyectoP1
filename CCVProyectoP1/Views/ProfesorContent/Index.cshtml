@@ -8,7 +8,7 @@
         @foreach (var clase in Model)
         {
             <li>
-                @clase.Nombre
+                @clase.CNombre
                 <a asp-controller="Actividades" asp-action="Index" asp-route-claseId="@clase.Id" class="btn btn-primary">
                     Gestionar Clase
                 </a>

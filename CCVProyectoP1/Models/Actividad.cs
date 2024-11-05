@@ -1,4 +1,6 @@
-﻿namespace CCVProyectoP1.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CCVProyectoP1.Models
 {
     public class Actividad
     {

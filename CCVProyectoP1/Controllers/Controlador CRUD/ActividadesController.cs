@@ -65,7 +65,7 @@ namespace CCVProyectoP1.Controllers
         // GET: Actividades/Create
         public IActionResult Create()
         {
-            ViewData["ClaseId"] = new SelectList(_context.Clase, "Id", "Nombre");
+            ViewData["ClaseId"] = new SelectList(_context.Clase, "Id", "CNombre");
             return View();
         }
 
@@ -107,7 +107,7 @@ namespace CCVProyectoP1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClaseId"] = new SelectList(_context.Clase, "Id", "Nombre", actividad.ClaseId);
+            ViewData["ClaseId"] = new SelectList(_context.Clase, "Id", "CNombre", actividad.ClaseId);
             return View(actividad);
         }
 
@@ -124,7 +124,7 @@ namespace CCVProyectoP1.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClaseId"] = new SelectList(_context.Clase, "Id", "Nombre", actividad.ClaseId);
+            ViewData["ClaseId"] = new SelectList(_context.Clase, "Id", "CNombre", actividad.ClaseId);
             return View(actividad);
         }
 
@@ -160,7 +160,7 @@ namespace CCVProyectoP1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClaseId"] = new SelectList(_context.Clase, "Id", "Nombre", actividad.ClaseId);
+            ViewData["ClaseId"] = new SelectList(_context.Clase, "Id", "CNombre", actividad.ClaseId);
             return View(actividad);
         }
 
