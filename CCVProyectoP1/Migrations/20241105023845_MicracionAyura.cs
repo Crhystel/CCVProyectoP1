@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CCVProyectoP1.Migrations
 {
     /// <inheritdoc />
-    public partial class Migracion1Nueva : Migration
+    public partial class MicracionAyura : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -4,7 +4,6 @@ using CCVProyectoP1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,11 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCVProyectoP1.Migrations
 {
     [DbContext(typeof(CCVProyectoP1Context))]
-    [Migration("20241105011022_Micracion2Nueva")]
-    partial class Micracion2Nueva
+    partial class CCVProyectoP1ContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,11 +117,12 @@ namespace CCVProyectoP1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ClaseNombre")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdProfesor")
                         .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -212,6 +210,10 @@ namespace CCVProyectoP1.Migrations
                     b.Property<int>("Edad")
                         .HasColumnType("int");
 
+                    b.Property<string>("Materia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -244,7 +246,7 @@ namespace CCVProyectoP1.Migrations
             modelBuilder.Entity("CCVProyectoP1.Models.Clase", b =>
                 {
                     b.HasOne("CCVProyectoP1.Models.Profesor", "Profesor")
-                        .WithMany("Clases")
+                        .WithMany()
                         .HasForeignKey("IdProfesor")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -281,11 +283,6 @@ namespace CCVProyectoP1.Migrations
             modelBuilder.Entity("CCVProyectoP1.Models.Estudiante", b =>
                 {
                     b.Navigation("ClaseEstudiantes");
-                });
-
-            modelBuilder.Entity("CCVProyectoP1.Models.Profesor", b =>
-                {
-                    b.Navigation("Clases");
                 });
 #pragma warning restore 612, 618
         }
