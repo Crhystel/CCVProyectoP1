@@ -58,7 +58,14 @@ namespace CCVProyectoP1.Controllers
                .Cast<RolEnum>()
                .Where(r => r == RolEnum.Estudiante)
                .ToList();
-            
+            var grado = Enum.GetValues(typeof(GradoEnum))
+                .Cast<GradoEnum>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+                }).ToList();
+            ViewBag.Grado = grado;
             ViewBag.Rol = rol;
             return View();
         }
@@ -97,7 +104,16 @@ namespace CCVProyectoP1.Controllers
             {
                 new SelectListItem{Value=RolEnum.Estudiante.ToString(),Text="Estudiante", Selected=true}
             };
+            var grado = Enum.GetValues(typeof(GradoEnum))
+                .Cast<GradoEnum>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text=c.ToString(),
+                    Selected=c==estudiante.Grado
+                }).ToList();
             ViewBag.Rol = rol;
+            ViewBag.Grado = grado;
             return View(estudiante);
         }
 
