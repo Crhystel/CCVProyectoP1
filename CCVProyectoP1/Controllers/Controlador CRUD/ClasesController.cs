@@ -78,7 +78,7 @@ namespace CCVProyectoP1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CNombre,IdProfesor")] Clase clase)
+        public async Task<IActionResult> Create([Bind("Id,CNombre,IdProfesor,Grado")] Clase clase)
         {
             if (ModelState.IsValid)
             {
@@ -130,7 +130,7 @@ namespace CCVProyectoP1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CNombre,IdProfesor")] Clase clase)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CNombre,IdProfesor,Grado")] Clase clase)
         {
             if (id != clase.Id)
             {
@@ -166,6 +166,14 @@ namespace CCVProyectoP1.Controllers
         {
             
             var clasesConEstudiantes = _context.Clase.Include(c => c.ClaseEstudiantes).ThenInclude(e => e.Estudiante)
+                .Select(c => new
+                {
+                    c.Id,
+                    CNombre=c.CNombre,
+                    Grado=c.Grado,
+                    ClaseEstudiantes = c.ClaseEstudiantes,
+                    DisplayText =$"{c.CNombre} - {c.Grado}"
+                })
                 .ToList();  
             var estudiantes = _context.Estudiante.ToList();
             var gradoClases = Enum.GetValues(typeof(GradoEnum))
@@ -176,7 +184,7 @@ namespace CCVProyectoP1.Controllers
                     Text = c.ToString()
                 }).ToList();
 
-            ViewBag.ClasesDropdown = new SelectList(clasesConEstudiantes, "Id", "CNombre");
+            ViewBag.ClasesDropdown = new SelectList(clasesConEstudiantes, "Id", "DisplayText");
 
             ViewBag.Grado = gradoClases;
             ViewBag.Clases = clasesConEstudiantes;

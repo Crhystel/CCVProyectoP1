@@ -28,7 +28,8 @@ namespace CCVProyectoP1.Models
         [Required(ErrorMessage = "Este campo es obligatorio.")]
         public int IdProfesor { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio.")]
-        
+
+        public GradoEnum Grado { get; set; }
         public ICollection<ClaseEstudiante> ClaseEstudiantes { get; set; } = new List<ClaseEstudiante>();
 
         public ICollection<Actividad> Actividades { get; set; } = new List<Actividad>();

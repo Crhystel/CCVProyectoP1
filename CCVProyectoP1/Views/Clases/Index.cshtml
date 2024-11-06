@@ -15,7 +15,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CNombre)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.Grado)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Profesor)
             </th>
@@ -29,7 +31,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CNombre)
             </td>
-            
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grado)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Profesor.Nombre)
             </td>
