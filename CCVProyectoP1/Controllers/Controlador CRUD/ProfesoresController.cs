@@ -155,7 +155,7 @@ namespace CCVProyectoP1.Controllers
             if (existeProfe != null)
             {
               
-                ViewBag.ErrorMessage = "Ya existe un profesor con esta cédula.";
+                ViewBag.ErrorMessage = "Este usuario ya existe.";
 
                 
                 var rol = new List<SelectListItem>

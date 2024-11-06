@@ -79,6 +79,25 @@ namespace CCVProyectoP1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Grado,Id,Cedula,Nombre,NombreUsuario,Contrasenia,Edad,Rol")] Estudiante estudiante)
         {
+            var rol = Enum.GetValues(typeof(RolEnum))
+               .Cast<RolEnum>()
+               .Where(r => r == RolEnum.Estudiante)
+               .ToList();
+            var grado = Enum.GetValues(typeof(GradoEnum))
+                .Cast<GradoEnum>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+                }).ToList();
+            ViewBag.Grado = grado;
+            ViewBag.Rol = rol;
+            var existeEstudiante = _context.Estudiante.FirstOrDefault(c => c.Cedula == estudiante.Cedula);
+            if (existeEstudiante != null)
+            {
+                ViewBag.ErrorMessage = "Este usuario ya existe.";
+                return View(estudiante);
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(estudiante);
@@ -127,6 +146,28 @@ namespace CCVProyectoP1.Controllers
             if (id != estudiante.Id)
             {
                 return NotFound();
+            }
+            var existeEstudiante= _context.Estudiante.FirstOrDefault(c=>c.Cedula==estudiante.Cedula);   
+            if (existeEstudiante != null)
+            {
+                ViewBag.ErrorMessage = "Este usuario ya existe.";
+
+                var rol = new List<SelectListItem>
+                {
+                    new SelectListItem{ Value = RolEnum.Estudiante.ToString(), Text = "Estudiante", Selected = true }
+                };
+                var grado = Enum.GetValues(typeof(GradoEnum))
+                    .Cast<GradoEnum>()
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.ToString(),
+                        Text = c.ToString(),
+                        Selected = c == estudiante.Grado
+                    }).ToList();
+
+                ViewBag.Rol = rol;
+                ViewBag.Grado= grado;
+                return View(estudiante);
             }
 
             if (ModelState.IsValid)
