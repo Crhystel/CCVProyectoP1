@@ -11,12 +11,14 @@
         <select asp-for="ClaseId" class="form-control" asp-items="ViewBag.ClasesDropdown">
             <option value="">-- Seleccione una Clase --</option>
         </select>
+        <span asp-validation-for="ClaseId" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label for="Grado">Seleccione un Grado:</label>
         <select asp-for="Grado" class="form-control" asp-items="ViewBag.Grado" id="GradoSelect" onchange="cargarEstudiantesPorGrado()">
             <option value="">-- Seleccione un Grado --</option>
         </select>
+        <span asp-validation-for="Grado" class="text-danger"></span>
     </div>
 
     <div class="form-group">
@@ -24,6 +26,7 @@
         <select asp-for="EstudianteId" class="form-control" asp-items="ViewBag.Estudiantes" id="EstudianteSelect">
             <option value="">-- Seleccione un Estudiante --</option>
         </select>
+        <span asp-validation-for="EstudianteId" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Unir Estudiante a Clase</button>
