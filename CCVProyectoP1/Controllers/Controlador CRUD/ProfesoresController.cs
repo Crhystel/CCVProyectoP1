@@ -90,7 +90,7 @@ namespace CCVProyectoP1.Controllers
             return View(profesor);
         }
 
-        // GET: Profesores/Edit/5
+        // GET: Profesores/Edit/55
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
