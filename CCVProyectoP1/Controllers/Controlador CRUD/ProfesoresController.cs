@@ -81,6 +81,25 @@ namespace CCVProyectoP1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Clase,Id,Cedula,Nombre,NombreUsuario,Contrasenia,Edad,Rol")] Profesor profesor)
         {
+            var rol = Enum.GetValues(typeof(RolEnum))
+               .Cast<RolEnum>()
+               .Where(r => r == RolEnum.Profesor)
+               .ToList();
+            var clases = Enum.GetValues(typeof(Clase.ClaseEnum))
+                .Cast<Clase.ClaseEnum>()
+                .Select(c => new SelectListItem
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+                }).ToList();
+            ViewBag.Rol = rol;
+            ViewBag.Clases = clases;
+            var existeProfe = _context.Profesor.FirstOrDefault(c => c.Cedula == profesor.Cedula);
+            if (existeProfe != null)
+            {
+                ViewBag.ErrorMessage = "Este usuario ya existe.";
+                return View(profesor);
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(profesor);
@@ -90,7 +109,7 @@ namespace CCVProyectoP1.Controllers
             return View(profesor);
         }
 
-        // GET: Profesores/Edit/5
+        // GET: Profesores/Edit/55
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -131,6 +150,31 @@ namespace CCVProyectoP1.Controllers
             if (id != profesor.Id)
             {
                 return NotFound();
+            }
+            var existeProfe = _context.Profesor.FirstOrDefault(c => c.Cedula == profesor.Cedula && c.Id != id);
+            if (existeProfe != null)
+            {
+              
+                ViewBag.ErrorMessage = "Este usuario ya existe.";
+
+                
+                var rol = new List<SelectListItem>
+                {
+                    new SelectListItem{ Value = RolEnum.Profesor.ToString(), Text = "Profesor", Selected = true }
+                };
+                var clases = Enum.GetValues(typeof(Clase.ClaseEnum))
+                    .Cast<Clase.ClaseEnum>()
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.ToString(),
+                        Text = c.ToString(),
+                        Selected = c == profesor.Clase
+                    }).ToList();
+
+                ViewBag.Rol = rol;
+                ViewBag.Clases = clases;
+
+                return View(profesor);
             }
 
             if (ModelState.IsValid)
